@@ -1,0 +1,33 @@
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    tools:context="com.sxt.serjplayground.Fragments.RecipesFragment">
+    <data>
+        <variable name="Recipes" type="com.sxt.serjplayground.Models.Roots.RecipesModel"/>
+        <variable  name="scope" type="com.sxt.serjplayground.Fragments.RecipesFragment"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/myContainer"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Add"
+            android:onClick="@{scope::OnAddClick}"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onItemClick="@{scope::OnItemSelected}"
+        bind:list="@{Recipes.RecipesList}"
+        bind:itemViewId="@{@layout/fragment_item_recipe}"
+        bind:variableId='@{"info"}'
+        />
+
+    </LinearLayout>
+</layout>
