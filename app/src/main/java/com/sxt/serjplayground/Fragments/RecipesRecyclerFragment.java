@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,25 +53,19 @@ public class RecipesRecyclerFragment extends Fragment
         DTORecipe a = new DTORecipe();
         a.description = "ciao";
         a.name = "miao";
-        SystemData.Data.Recipes.RecipesList.add(a);
+        SystemData.Data.Recipes.recipesList.add(a);
     }
 
     public void OnItemSelected(Object item)
     {
         final DTORecipe res = (DTORecipe)item;
-        FastDialog.Show(this.getContext(), res.toString(), "", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        res.description = "cambiato";
-                        binding.invalidateAll();
-                        dialogInterface.dismiss();
-                    }
-                },
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
+        SystemData.Data.Recipes.currentRecipe = res;
+
+        Fragment frag = new RecipeDetailsFragment();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.content_frame, frag);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.addToBackStack("indietro");
+        ft.commit();
     }
 }

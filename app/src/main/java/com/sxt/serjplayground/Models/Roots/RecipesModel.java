@@ -15,14 +15,16 @@ import retrofit2.Response;
 
 public class RecipesModel extends BaseModel
 {
-    public ObservableArrayList<DTORecipe> RecipesList;
-    public String CIao;
+    public ObservableArrayList<DTORecipe> recipesList;
+    public DTORecipe currentRecipe;
+
 
     @Override
     public void Initialize()
     {
         super.Initialize();
-        RecipesList = new ObservableArrayList<>();
+        recipesList = new ObservableArrayList<>();
+        currentRecipe = null;
     }
 
     public void RefreshRecipesList()
@@ -33,8 +35,8 @@ public class RecipesModel extends BaseModel
             @Override
             public void onResponse(Call<ArrayList<DTORecipe>> call, Response<ArrayList<DTORecipe>> response) {
                 if (response.body() != null) {
-                    RecipesList.clear();
-                    RecipesList.addAll(response.body()); // SCHIFOOOOOO!!!!
+                    recipesList.clear();
+                    recipesList.addAll(response.body()); // SCHIFOOOOOO!!!!
                 }
             }
 

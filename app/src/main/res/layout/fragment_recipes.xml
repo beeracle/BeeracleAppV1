@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onItemClick="@{scope::OnItemSelected}"
-        bind:list="@{Recipes.RecipesList}"
+        bind:list="@{Recipes.recipesList}"
         bind:itemViewId="@{@layout/fragment_item_recipe}"
         bind:variableId='@{"info"}'
         />

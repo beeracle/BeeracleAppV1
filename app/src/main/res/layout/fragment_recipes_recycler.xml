@@ -25,7 +25,7 @@
         android:layout_height="fill_parent"
         bind:layoutManager="android.support.v7.widget.LinearLayoutManager"
         bind:itemClickListener="@{scope::OnItemSelected}"
-        bind:list="@{Recipes.RecipesList}"
+        bind:list="@{Recipes.recipesList}"
         bind:itemViewId="@{@layout/fragment_item_recipe}"
         bind:variableId='@{"info"}'
         />

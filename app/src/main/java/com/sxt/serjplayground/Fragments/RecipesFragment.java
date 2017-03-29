@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,24 +55,19 @@ public class RecipesFragment extends Fragment
         DTORecipe a = new DTORecipe();
         a.description = "ciao";
         a.name = "miao";
-        SystemData.Data.Recipes.RecipesList.add(a);
+        SystemData.Data.Recipes.recipesList.add(a);
     }
 
     public void OnItemSelected(AdapterView<?> parent, View v, int position, long id)
     {
         final DTORecipe res = (DTORecipe)((ListView) parent).getAdapter().getItem(position);
-        FastDialog.Show(this.getContext(), res.toString(), "", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        res.description = "cambiato";
-                        dialogInterface.dismiss();
-                    }
-                },
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
+        SystemData.Data.Recipes.currentRecipe = res;
+
+        Fragment frag = new RecipeDetailsFragment();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.content_frame, frag);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.addToBackStack("indietro");
+        ft.commit();
     }
 }

@@ -1,0 +1,36 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.sxt.serjplayground.Fragments.RecipeDetailsFragment">
+
+    <data>
+        <variable
+            name="fragment_recipe_details_data"
+            type="com.sxt.serjplayground.Models.Roots.RecipesModel"/>
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{fragment_recipe_details_data.currentRecipe.name}"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{fragment_recipe_details_data.currentRecipe.dateCreated}"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{fragment_recipe_details_data.currentRecipe.description}"/>
+
+
+
+    </LinearLayout>
+
+</layout>
